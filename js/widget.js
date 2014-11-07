@@ -24,16 +24,19 @@ Widget.prototype.setPosition = function() {
 
     if (!position) {
         console.warn('no positioning coordinates specified for widget:', this.id);
+
+        xPos = 0;
+        yPos = 0;
     }
     else {
         xPos = position.split(',')[0];
         yPos = position.split(',')[1];
-
-        this.$el.css({
-            'top': xPos + 'px',
-            'left': yPos + 'px'
-        });
     }
+    
+    this.$el.css({
+        'top': xPos + 'px',
+        'left': yPos + 'px'
+    });
 };
 
 Widget.prototype.setAbsolutePosition = function() {

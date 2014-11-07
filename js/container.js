@@ -14,19 +14,19 @@ var Container = function($element) {
 
 Container.prototype.initialize = function() {
     var that = this,
-        fps = 20;
+        fps = 1;
 
     console.log(this);
 
     this.setRelativePosition();
-
-    this.calculateMetrics();
 
     (function draw() {
         setTimeout(function() {
             requestAnimFrame(draw);
             
             that.createWidgets();
+
+            that.checkWidgetCollisions();
         }, 1000 / fps);
     })();
 
@@ -66,6 +66,12 @@ Container.prototype.createWidgets = function() {
     }
     else {
         //console.warn('number of widgets has not changed; widget creation unnecessary!');
+    }
+};
+
+Container.prototype.checkWidgetCollisions = function() {
+    for (var i = 0; i < this.widgets.length; i++) {
+        // console.log(this.widgets[i].edges);
     }
 };
 
