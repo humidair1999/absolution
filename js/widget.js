@@ -15,6 +15,7 @@ Widget.prototype.initialize = function() {
     this.setAbsolutePosition();
 
     this.setPosition();
+    this.setSize();
     this.setLayer();
 
     this.calculateEdges();
@@ -50,6 +51,25 @@ Widget.prototype.setPosition = function() {
         'top': xPos + 'px',
         'left': yPos + 'px'
     });
+};
+
+Widget.prototype.setSize = function() {
+    var size = this.$el.attr('data-absolution-size'),
+        width = null,
+        height = null;
+
+    if (!size) {
+        console.warn('no sizing values specified for widget:', this.id);
+    }
+    else {
+        width = size.split(',')[0];
+        height = size.split(',')[1];
+
+        this.$el.css({
+            'width': width + 'px',
+            'height': height + 'px'
+        });
+    }
 };
 
 Widget.prototype.setLayer = function() {
