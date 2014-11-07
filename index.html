@@ -47,6 +47,17 @@
         </script>
 
         <script src="js/vendor/jquery-1.11.1.js"></script>
-        <script src="js/main.js"></script>
+
+        <script src="js/widget.js"></script>
+        <script src="js/container.js"></script>
+        <script src="js/app.js"></script>
+
+        <script>
+            var generateFakeElement = function() {
+                $('[data-absolution-element="container"]').append('<div class="debug" data-absolution-element="widget" data-absolution-pos="200,0">dsdjksns</div>');
+            };
+
+            var app = new App();
+        </script>
     </body>
 </html>
