@@ -13,7 +13,28 @@ Widget.prototype.initialize = function() {
 
     this.setAbsolutePosition();
 
+    this.setPosition();
+
     this.calculateEdges();
+};
+
+Widget.prototype.setPosition = function() {
+    var position = this.$el.attr('data-absolution-pos'),
+        xPos = null,
+        yPos = null;
+
+    if (!position) {
+        console.warn('no positioning coordinates specified for widget:', this.id);
+    }
+    else {
+        xPos = position.split(',')[0];
+        yPos = position.split(',')[1];
+
+        this.$el.css({
+            'top': xPos + 'px',
+            'left': yPos + 'px'
+        });
+    }
 };
 
 Widget.prototype.setAbsolutePosition = function() {
