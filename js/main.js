@@ -11,7 +11,15 @@ var Widget = function($element) {
 Widget.prototype.initialize = function() {
     console.log(this);
 
+    this.setAbsolutePosition();
+
     this.calculateEdges();
+};
+
+Widget.prototype.setAbsolutePosition = function() {
+    this.$el.css({
+        'position': 'absolute'
+    });
 };
 
 Widget.prototype.calculateEdges = function() {
@@ -30,7 +38,7 @@ var Container = function($element) {
     this.$el = $element;
     this.metrics = {};
 
-    this.widgetSelector = '[data-abs-element="widget"]';
+    this.widgetSelector = '[data-absolution-element="widget"]';
     this.widgets = [];
 
     this.initialize();
@@ -41,6 +49,8 @@ Container.prototype.initialize = function() {
         fps = 20;
 
     console.log(this);
+
+    this.setRelativePosition();
 
     this.calculateMetrics();
 
@@ -53,6 +63,12 @@ Container.prototype.initialize = function() {
     })();
 
     this.setMetrics();
+};
+
+Container.prototype.setRelativePosition = function() {
+    this.$el.css({
+        'position': 'relative'
+    });
 };
 
 Container.prototype.createWidgets = function() {
@@ -119,7 +135,7 @@ Container.prototype.setMetrics = function() {
 var App = function() {
     this.id = Math.random().toString(36).substr(2, 6);
 
-    this.containerSelector = '[data-abs-element="container"]';
+    this.containerSelector = '[data-absolution-element="container"]';
     this.containers = [];
 
     this.initialize();
