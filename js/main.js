@@ -37,25 +37,20 @@ var Container = function($element) {
 };
 
 Container.prototype.initialize = function() {
-    var that = this;
+    var that = this,
+        fps = 20;
 
     console.log(this);
 
     this.calculateMetrics();
 
-    (function animloop(){
-        requestAnimFrame(animloop);
-
-        that.createWidgets();
+    (function draw() {
+        setTimeout(function() {
+            requestAnimFrame(draw);
+            
+            that.createWidgets();
+        }, 1000 / fps);
     })();
-
-    // var fps = 15;
-    // function draw() {
-    //     setTimeout(function() {
-    //         requestAnimationFrame(draw);
-    //         // Drawing code goes here
-    //     }, 1000 / fps);
-    // }
 
     this.setMetrics();
 };
