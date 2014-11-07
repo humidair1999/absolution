@@ -10,11 +10,22 @@ var Widget = function($element) {
 Widget.prototype.initialize = function() {
     console.log(this);
 
+    this.setWidgetId();
     this.setAbsolutePosition();
 
     this.setPosition();
 
     this.calculateEdges();
+};
+
+Widget.prototype.setWidgetId = function() {
+    this.$el.attr('data-absolution-id', this.id);
+};
+
+Widget.prototype.setAbsolutePosition = function() {
+    this.$el.css({
+        'position': 'absolute'
+    });
 };
 
 Widget.prototype.setPosition = function() {
@@ -36,12 +47,6 @@ Widget.prototype.setPosition = function() {
     this.$el.css({
         'top': xPos + 'px',
         'left': yPos + 'px'
-    });
-};
-
-Widget.prototype.setAbsolutePosition = function() {
-    this.$el.css({
-        'position': 'absolute'
     });
 };
 

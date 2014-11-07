@@ -18,6 +18,7 @@ Container.prototype.initialize = function() {
 
     console.log(this);
 
+    this.setContainerId();
     this.setRelativePosition();
 
     (function draw() {
@@ -31,6 +32,10 @@ Container.prototype.initialize = function() {
     })();
 
     this.setMetrics();
+};
+
+Container.prototype.setContainerId = function() {
+    this.$el.attr('data-absolution-id', this.id);
 };
 
 Container.prototype.setRelativePosition = function() {
