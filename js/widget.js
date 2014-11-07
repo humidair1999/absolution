@@ -3,6 +3,7 @@ var Widget = function($element) {
 
     this.$el = $element;
     this.edges = {};
+    this.layer = null;
 
     this.initialize();
 };
@@ -14,6 +15,7 @@ Widget.prototype.initialize = function() {
     this.setAbsolutePosition();
 
     this.setPosition();
+    this.setLayer();
 
     this.calculateEdges();
 };
@@ -47,6 +49,41 @@ Widget.prototype.setPosition = function() {
     this.$el.css({
         'top': xPos + 'px',
         'left': yPos + 'px'
+    });
+};
+
+Widget.prototype.setLayer = function() {
+    var layer = parseInt(this.$el.attr('data-absolution-layer'), 10),
+        zIndex = null;
+
+    if (!layer || (layer < 1) || (layer > 4)) {
+        console.warn('invalid layer specified for widget:', this.id);
+
+        zIndex = 4;
+    }
+    else {    
+        switch (layer) {
+            case (1):
+                zIndex = 4;
+
+                break;
+            case (2):
+                zIndex = 3;
+
+                break;
+            case (3):
+                zIndex = 2;
+
+                break;
+            case (4):
+                zIndex = 1;
+
+                break;
+        }
+    }
+
+    this.$el.css({
+        'z-index': zIndex
     });
 };
 
