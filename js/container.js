@@ -75,9 +75,28 @@ Container.prototype.createWidgets = function() {
 };
 
 Container.prototype.checkWidgetCollisions = function() {
-    for (var i = 0; i < this.widgets.length; i++) {
-        // console.log(this.widgets[i].edges);
+    var that = this,
+        layerWidgets = {};
+
+    var findWidgetsByLayer = function(layerNum) {
+        return $.grep(that.widgets, function(element, idx) {
+            return element.layer === layerNum;
+        });
+    };
+
+    for (var i = 1; i <= 4; i++) {
+        layerWidgets[i] = findWidgetsByLayer(i);
     }
+
+    $.each(layerWidgets, function(prop, val) {
+        var previousWidget = null;
+
+        if (val.length > 1) {
+            $.each(val, function(idx, val) {
+                // console.log(val);
+            })
+        }
+    });
 };
 
 Container.prototype.calculateMetrics = function() {

@@ -102,6 +102,8 @@ Widget.prototype.setLayer = function() {
         }
     }
 
+    this.layer = layer;
+
     this.$el.css({
         'z-index': zIndex
     });
